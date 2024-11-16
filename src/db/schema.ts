@@ -175,10 +175,11 @@ export const inventoryItems = pgTable(
     })
 );
 
-export const inventoryItemRelations = relations(inventoryItems, ({ one }) => ({
+export const inventoryItemRelations = relations(inventoryItems, ({ one, many }) => ({
     type: one(inventoryItemTypes),
     source: one(inventoryItemTypeSources),
     location: one(inventoryItems),
+    stockCounts: many(inventoryItemStockCounts),
 }));
 
 export const inventoryItemSchema = createSelectSchema(inventoryItems);
